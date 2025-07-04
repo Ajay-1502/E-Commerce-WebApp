@@ -1,0 +1,71 @@
+import cartElements from '../data/cartElements';
+import { Button, Container, Table, Row, Col } from 'react-bootstrap';
+
+const Cart = ({ onClose }) => {
+  const cartTotal = cartElements.reduce((total, item) => {
+    return total + item.quantity * item.price;
+  }, 0);
+
+  return (
+    <Container>
+      <h2
+        className="text-center mb-4 fw-bold"
+        style={{ fontFamily: 'Metal Menia,cursive' }}
+      >
+        Your Cart
+      </h2>
+
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr className="text-center fw-bold">
+            <th>ITEM</th>
+            <th>QUANTITY</th>
+            <th>PRICE</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartElements.map((item, index) => {
+            return (
+              <tr key={index} className="align-middle text-center">
+                <td className="d-flex align-items-center gap-3">
+                  <img src={item.imageUrl} width={60} height={60} />
+                  {item.title}
+                </td>
+                <td>{item.quantity}</td>
+                <td>₹{item.price}</td>
+                <td>
+                  <Button variant="danger" size="sm">
+                    REMOVE
+                  </Button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+
+      <Row className="justify-content-center mt-4">
+        <Col xs="auto" className="fw-bold fs-5">
+          Total Amount : ₹{cartTotal}
+        </Col>
+      </Row>
+
+      <Row className="justify-content-center mt-3">
+        <Col xs="auto">
+          <Button variant="success" size="md">
+            PURCHASE
+          </Button>
+        </Col>
+      </Row>
+
+      <div className="text-end mt-4">
+        <Button variant="danger" onClick={onClose}>
+          CLOSE
+        </Button>
+      </div>
+    </Container>
+  );
+};
+
+export default Cart;

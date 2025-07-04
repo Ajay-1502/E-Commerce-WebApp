@@ -1,0 +1,29 @@
+.modal {
+  position: fixed;
+  top: 08vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 700px;
+  height: 80vh;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  background: white;
+  z-index: 9999;
+  display: block;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(5px);
+}

@@ -1,6 +1,6 @@
 import { Navbar, Container, Nav, Button, Badge } from 'react-bootstrap';
 
-const Header = () => {
+const Header = ({ cartHandler }) => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="py-3 shadow-sm">
       <Container>
@@ -20,7 +20,11 @@ const Header = () => {
               About
             </Nav.Link>
           </Nav>
-          <Button variant="outline-info" className="position-relative">
+          <Button
+            variant="outline-info"
+            className="position-relative"
+            onClick={cartHandler}
+          >
             Cart
             <Badge bg="info" text="dark" className="ms-2">
               0

@@ -1,4 +1,4 @@
-import musicAlbums, { merchandise } from '../data/products';
+import musicAlbums, { merchandise } from './data/products';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 const DisplayProducts = () => {
@@ -12,16 +12,9 @@ const DisplayProducts = () => {
           {title}
         </h2>
         <Row className="justify-content-center">
-          {products.map((product) => {
+          {products.map((product, index) => {
             return (
-              <Col
-                key={Date.now()}
-                xs={12}
-                sm={6}
-                md={4}
-                lg={3}
-                className="mb-4"
-              >
+              <Col key={index} xs={12} sm={6} md={4} lg={3} className="mb-4">
                 <Card className="h-100 shadow-sm text-center">
                   <Card.Img variant="top" src={product.imageUrl} />
                   <Card.Body className="fw-bold">
