@@ -1,8 +1,12 @@
-import cartElements from '../data/cartElements';
+//import cartElements from '../data/cartElements';
+import { useContext } from 'react';
+import CartContext from './cart-context';
 import { Button, Container, Table, Row, Col } from 'react-bootstrap';
 
 const Cart = ({ onClose }) => {
-  const cartTotal = cartElements.reduce((total, item) => {
+  const cartCtx = useContext(CartContext);
+
+  const cartTotal = cartCtx.cartItems.reduce((total, item) => {
     return total + item.quantity * item.price;
   }, 0);
 
@@ -25,17 +29,37 @@ const Cart = ({ onClose }) => {
           </tr>
         </thead>
         <tbody>
-          {cartElements.map((item, index) => {
+          {cartCtx.cartItems.map((item, index) => {
             return (
               <tr key={index} className="align-middle text-center">
                 <td className="d-flex align-items-center gap-3">
                   <img src={item.imageUrl} width={60} height={60} />
                   {item.title}
                 </td>
-                <td>{item.quantity}</td>
+                <td>
+                  <Button
+                    onClick={() => cartCtx.addItem(item, -1)}
+                    variant="danger"
+                    disabled={item.quantity < 2}
+                    className="py-0 px-2 mx-1"
+                  >
+                    -
+                  </Button>
+                  {item.quantity}
+                  <Button
+                    onClick={() => cartCtx.addItem(item, 1)}
+                    className="py-0 px-1 mx-1"
+                  >
+                    +
+                  </Button>
+                </td>
                 <td>₹{item.price}</td>
                 <td>
-                  <Button variant="danger" size="sm">
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => cartCtx.removeItem(item)}
+                  >
                     REMOVE
                   </Button>
                 </td>

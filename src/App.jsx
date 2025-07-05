@@ -4,6 +4,7 @@ import DisplayProducts from './components/DisplayProducts';
 import Footer from './components/Footer';
 import Modal from './components/UI/Modal';
 import Cart from './components/cart/Cart';
+import ContextProvider from './components/cart/ContextProvider';
 //import './App.css';
 
 function App() {
@@ -18,16 +19,18 @@ function App() {
   };
 
   return (
-    <div>
-      <Header cartHandler={openCartHandler} />
-      <DisplayProducts />
-      {showCart && (
-        <Modal onClose={closeCartHandler}>
-          <Cart onClose={closeCartHandler} />
-        </Modal>
-      )}
-      <Footer />
-    </div>
+    <>
+      <ContextProvider>
+        <Header cartHandler={openCartHandler} />
+        <DisplayProducts />
+        {showCart && (
+          <Modal onClose={closeCartHandler}>
+            <Cart onClose={closeCartHandler} />
+          </Modal>
+        )}
+        <Footer />
+      </ContextProvider>
+    </>
   );
 }
 

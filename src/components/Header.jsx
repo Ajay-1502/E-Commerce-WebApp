@@ -1,6 +1,10 @@
+import { useContext } from 'react';
 import { Navbar, Container, Nav, Button, Badge } from 'react-bootstrap';
+import CartContext from './cart/cart-context';
 
 const Header = ({ cartHandler }) => {
+  const cartCtx = useContext(CartContext);
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="py-3 shadow-sm">
       <Container>
@@ -27,7 +31,7 @@ const Header = ({ cartHandler }) => {
           >
             Cart
             <Badge bg="info" text="dark" className="ms-2">
-              0
+              {cartCtx.cartItems.length}
             </Badge>
           </Button>
         </Navbar.Collapse>
