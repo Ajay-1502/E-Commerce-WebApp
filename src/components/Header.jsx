@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { Navbar, Container, Nav, Button, Badge } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import CartContext from './cart/cart-context';
+import { Navbar, Container, Nav, Button, Badge } from 'react-bootstrap';
 
 const Header = ({ cartHandler }) => {
   const cartCtx = useContext(CartContext);
@@ -14,13 +15,13 @@ const Header = ({ cartHandler }) => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav" className="justify-content-end">
           <Nav className="me-3">
-            <Nav.Link href="#home" className="mx-2 fw-bold">
+            <Nav.Link as={Link} to="/home" className="mx-2 fw-bold">
               Home
             </Nav.Link>
-            <Nav.Link href="#store" className="mx-2 fw-bold">
+            <Nav.Link as={Link} to="/" className="mx-2 fw-bold">
               Store
             </Nav.Link>
-            <Nav.Link href="#about" className="mx-2 fw-bold">
+            <Nav.Link as={Link} to="/about" className="mx-2 fw-bold">
               About
             </Nav.Link>
           </Nav>
