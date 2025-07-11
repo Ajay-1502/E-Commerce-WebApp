@@ -13,21 +13,24 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaYoutube size={30} color="white" />
+          <FaYoutube size={30} style={{ color: '#FF0000', margin: '0 10px' }} />
         </a>
         <a
           href="https://www.spotify.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaSpotify size={30} color="white" />
+          <FaSpotify size={30} style={{ color: '#1DB954', margin: '0 10px' }} />
         </a>
         <a
           href="https://www.facebook.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaFacebook size={30} color="white" />
+          <FaFacebook
+            size={30}
+            style={{ color: '#1877F2', margin: '0 10px' }}
+          />
         </a>
       </div>
     </div>

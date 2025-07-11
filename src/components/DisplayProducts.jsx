@@ -16,7 +16,7 @@ const DisplayProducts = ({ cartHandler }) => {
           {title}
         </h2>
         <Row className="justify-content-center">
-          {products.map((product, index) => {
+          {products.map((product) => {
             return (
               <Col
                 key={product.id}
