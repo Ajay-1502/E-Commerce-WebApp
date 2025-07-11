@@ -24,7 +24,10 @@ function App() {
       path: '/',
       element: <Layout cartHandler={openCartHandler} />,
       children: [
-        { index: true, element: <DisplayProducts /> },
+        {
+          index: true,
+          element: <DisplayProducts cartHandler={openCartHandler} />,
+        },
         { path: '/about', element: <About /> },
         { path: '/home', element: <Home /> },
       ],

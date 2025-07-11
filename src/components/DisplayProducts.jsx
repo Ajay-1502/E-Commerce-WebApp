@@ -3,7 +3,7 @@ import musicAlbums, { merchandise } from './data/products';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import CartContext from './cart/cart-context';
 
-const DisplayProducts = () => {
+const DisplayProducts = ({ cartHandler }) => {
   const cartCtx = useContext(CartContext);
 
   const renderSection = (title, products) => {
@@ -52,7 +52,7 @@ const DisplayProducts = () => {
       {renderSection('MUSIC', musicAlbums)}
       {renderSection('MERCH', merchandise)}
       <div className="text-center my-5">
-        <Button variant="secondary" size="lg">
+        <Button variant="secondary" size="lg" onClick={cartHandler}>
           See the cart
         </Button>
       </div>
