@@ -6,6 +6,10 @@ import { Navbar, Container, Nav, Button, Badge } from 'react-bootstrap';
 const Header = ({ cartHandler }) => {
   const cartCtx = useContext(CartContext);
 
+  const totalItems = cartCtx.cartItems.reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="py-3 shadow-sm">
       <Container>
@@ -32,7 +36,7 @@ const Header = ({ cartHandler }) => {
           >
             Cart
             <Badge bg="info" text="dark" className="ms-2">
-              {cartCtx.cartItems.length}
+              {totalItems}
             </Badge>
           </Button>
         </Navbar.Collapse>

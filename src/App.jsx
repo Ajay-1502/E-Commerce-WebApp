@@ -7,6 +7,8 @@ import Cart from './components/cart/Cart';
 import About from './components/About';
 import Home from './components/Home';
 import Layout from './components/Layout';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -36,6 +38,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer position="top-right" autoClose={1500} />
       <ContextProvider>
         <RouterProvider router={routes} />
         {showCart && (

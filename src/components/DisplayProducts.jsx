@@ -1,10 +1,25 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import musicAlbums, { merchandise } from './data/products';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import CartContext from './cart/cart-context';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DisplayProducts = ({ cartHandler }) => {
+  const [justAddedIds, setJustAddedIds] = useState([]);
+
   const cartCtx = useContext(CartContext);
+
+  const addToCartHandler = (product) => {
+    cartCtx.addItem(product, 1);
+    toast.success(`${product.title} added to cart! 🎉`);
+
+    setJustAddedIds((prev) => [...prev, product.id]);
+
+    setTimeout(() => {
+      setJustAddedIds((prev) => prev.filter((id) => id !== product.id));
+    }, 1500);
+  };
 
   const renderSection = (title, products) => {
     return (
@@ -17,6 +32,7 @@ const DisplayProducts = ({ cartHandler }) => {
         </h2>
         <Row className="justify-content-center">
           {products.map((product) => {
+            const isJustAdded = justAddedIds.includes(product.id);
             return (
               <Col
                 key={product.id}
@@ -32,10 +48,11 @@ const DisplayProducts = ({ cartHandler }) => {
                     <Card.Title>{product.title}</Card.Title>
                     <Card.Text>₹{product.price}</Card.Text>
                     <Button
-                      variant="info"
-                      onClick={() => cartCtx.addItem(product)}
+                      disabled={isJustAdded}
+                      variant={isJustAdded ? 'success' : 'info'}
+                      onClick={() => addToCartHandler(product)}
                     >
-                      Add To Cart
+                      {isJustAdded ? 'Added ✓' : 'Add To Cart'}
                     </Button>
                   </Card.Body>
                 </Card>
