@@ -7,6 +7,7 @@ import Cart from './components/cart/Cart';
 import About from './components/About';
 import Home from './components/Home';
 import Layout from './components/Layout';
+import ContactUs from './components/Contact';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -30,6 +31,7 @@ function App() {
           index: true,
           element: <DisplayProducts cartHandler={openCartHandler} />,
         },
+        { path: '/contactus', element: <ContactUs /> },
         { path: '/about', element: <About /> },
         { path: '/home', element: <Home /> },
       ],

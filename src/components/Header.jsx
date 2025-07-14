@@ -28,6 +28,9 @@ const Header = ({ cartHandler }) => {
             <Nav.Link as={Link} to="/about" className="mx-2 fw-bold">
               About
             </Nav.Link>
+            <Nav.Link as={Link} to="/contactus" className="mx-2 fw-bold">
+              Contact Us
+            </Nav.Link>
           </Nav>
           <Button
             variant="outline-info"
