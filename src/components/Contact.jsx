@@ -8,32 +8,38 @@ const ContactUs = () => {
 
   const submitButtonHandler = async (event) => {
     event.preventDefault();
-    const userObj = {
-      name: name,
-      emailId: emailId,
-      phoneNumber: phoneNumber,
-    };
 
-    try {
-      const response = await fetch(
-        'https://react-applications-2fc42-default-rtdb.firebaseio.com//user.json',
-        {
-          method: 'POST',
-          body: JSON.stringify(userObj),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+    if (name.trim().length > 0 && phoneNumber.trim().length > 0) {
+      const userObj = {
+        name: name,
+        emailId: emailId,
+        phoneNumber: phoneNumber,
+      };
+      console.log(userObj);
 
-      const data = await response.json();
-      console.log(data);
+      try {
+        const response = await fetch(
+          'https://react-applications-2fc42-default-rtdb.firebaseio.com//user.json',
+          {
+            method: 'POST',
+            body: JSON.stringify(userObj),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
-      setName('');
-      setEmailId('');
-      setPhoneNumber('');
-    } catch (err) {
-      console.log(err);
+        const data = await response.json();
+        console.log(data);
+
+        setName('');
+        setEmailId('');
+        setPhoneNumber('');
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      alert('Provide valid input');
     }
   };
 
