@@ -1,7 +1,9 @@
 import { useContext, useState } from 'react';
 import musicAlbums, { merchandise } from './data/products';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Nav } from 'react-bootstrap';
 import CartContext from './cart/cart-context';
+import { Link } from 'react-router-dom';
+import './DisplayProduct.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -42,10 +44,14 @@ const DisplayProducts = ({ cartHandler }) => {
                 lg={3}
                 className="mb-4"
               >
-                <Card className="h-100 shadow-sm text-center">
+                <Card className="h-100 shadow-sm text-center product-card">
                   <Card.Img variant="top" src={product.imageUrl} />
                   <Card.Body className="fw-bold">
-                    <Card.Title>{product.title}</Card.Title>
+                    <Nav.Link as={Link} to={`/store/${product.id}`}>
+                      <Card.Title className="product-title">
+                        {product.title}
+                      </Card.Title>
+                    </Nav.Link>
                     <Card.Text>₹{product.price}</Card.Text>
                     <Button
                       disabled={isJustAdded}
