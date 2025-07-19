@@ -1,10 +1,16 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthContext from './store/auth-context';
 import { Form, Button, Row, Col, Container, Card } from 'react-bootstrap';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
+  const navigate = useNavigate();
+
+  const authCtx = useContext(AuthContext);
 
   const authHandler = async (api, email, password) => {
     try {
@@ -25,7 +31,8 @@ const AuthForm = () => {
         const errorMsg = data.error.message || 'Authentication failed';
         throw new Error(errorMsg);
       }
-
+      authCtx.login(data.idToken);
+      navigate('/store');
       console.log(data);
     } catch (err) {
       console.log(err);

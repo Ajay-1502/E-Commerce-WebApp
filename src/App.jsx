@@ -10,6 +10,7 @@ import Layout from './components/Layout';
 import ContactUs from './components/Contact';
 import ProductPage from './components/ProductPage';
 import AuthForm from './components/AuthForm';
+import AuthProvider from './components/store/AuthProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -47,15 +48,17 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={1500} />
-      <ContextProvider>
-        <RouterProvider router={routes} />
-        {showCart && (
-          <Modal onClose={closeCartHandler}>
-            <Cart onClose={closeCartHandler} />
-          </Modal>
-        )}
-      </ContextProvider>
+      <AuthProvider>
+        <ToastContainer position="top-right" autoClose={1500} />
+        <ContextProvider>
+          <RouterProvider router={routes} />
+          {showCart && (
+            <Modal onClose={closeCartHandler}>
+              <Cart onClose={closeCartHandler} />
+            </Modal>
+          )}
+        </ContextProvider>
+      </AuthProvider>
     </>
   );
 }

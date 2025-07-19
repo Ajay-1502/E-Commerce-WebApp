@@ -1,10 +1,12 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CartContext from './cart/cart-context';
+import AuthContext from './store/auth-context';
 import { Navbar, Container, Nav, Button, Badge } from 'react-bootstrap';
 
 const Header = ({ cartHandler }) => {
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthContext);
 
   const totalItems = cartCtx.cartItems.reduce((total, item) => {
     return total + item.quantity;
