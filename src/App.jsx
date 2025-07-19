@@ -9,6 +9,7 @@ import Home from './components/Home';
 import Layout from './components/Layout';
 import ContactUs from './components/Contact';
 import ProductPage from './components/ProductPage';
+import AuthForm from './components/AuthForm';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -39,6 +40,7 @@ function App() {
         },
         { path: '/contactus', element: <ContactUs /> },
         { path: '/about', element: <About /> },
+        { path: '/auth', element: <AuthForm /> },
       ],
     },
   ]);

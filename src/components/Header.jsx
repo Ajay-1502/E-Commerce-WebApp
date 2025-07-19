@@ -38,10 +38,15 @@ const Header = ({ cartHandler }) => {
             onClick={cartHandler}
           >
             Cart
-            <Badge bg="info" text="dark" className="ms-2">
+            <Badge bg="info" text="dark" className="ms-1">
               {totalItems}
             </Badge>
           </Button>
+          <Link to="/auth">
+            <Button variant="outline-info" className="position-relative ms-4">
+              Login
+            </Button>
+          </Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>
