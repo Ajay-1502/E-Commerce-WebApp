@@ -1,5 +1,9 @@
-import { useState } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import ContextProvider from './components/cart/ContextProvider';
 import DisplayProducts from './components/DisplayProducts';
 import Modal from './components/UI/Modal';
@@ -13,9 +17,11 @@ import AuthForm from './components/AuthForm';
 import AuthProvider from './components/store/AuthProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AuthContext from './components/store/auth-context';
 
-function App() {
+function AppContent() {
   const [showCart, setShowCart] = useState(false);
+  const authCtx = useContext(AuthContext);
 
   const openCartHandler = () => {
     setShowCart(true);
@@ -33,11 +39,19 @@ function App() {
         { path: '/home', element: <Home /> },
         {
           path: '/store',
-          element: <DisplayProducts cartHandler={openCartHandler} />,
+          element: authCtx.isLoggedIn ? (
+            <DisplayProducts cartHandler={openCartHandler} />
+          ) : (
+            <Navigate to="/auth" replace />
+          ),
         },
         {
           path: '/store/:productId',
-          element: <ProductPage />,
+          element: authCtx.isLoggedIn ? (
+            <ProductPage />
+          ) : (
+            <Navigate to="/auth" replace />
+          ),
         },
         { path: '/contactus', element: <ContactUs /> },
         { path: '/about', element: <About /> },
@@ -48,19 +62,25 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
-        <ToastContainer position="top-right" autoClose={1500} />
-        <ContextProvider>
-          <RouterProvider router={routes} />
-          {showCart && (
-            <Modal onClose={closeCartHandler}>
-              <Cart onClose={closeCartHandler} />
-            </Modal>
-          )}
-        </ContextProvider>
-      </AuthProvider>
+      <ToastContainer position="top-right" autoClose={1500} />
+      <ContextProvider>
+        <RouterProvider router={routes} />
+        {showCart && (
+          <Modal onClose={closeCartHandler}>
+            <Cart onClose={closeCartHandler} />
+          </Modal>
+        )}
+      </ContextProvider>
     </>
   );
 }
+
+const App = () => {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+};
 
 export default App;

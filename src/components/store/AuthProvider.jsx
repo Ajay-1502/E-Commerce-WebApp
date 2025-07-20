@@ -2,7 +2,8 @@ import { useState } from 'react';
 import AuthContext from './auth-context';
 
 const AuthProvider = (props) => {
-  const [token, setToken] = useState(null);
+  const storedToken = localStorage.getItem('token');
+  const [token, setToken] = useState(storedToken);
 
   const loginHandler = (token) => {
     setToken(token);
