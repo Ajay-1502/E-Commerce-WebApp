@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import CartContext from './cart-context';
 import { Button, Container, Table, Row, Col } from 'react-bootstrap';
+import AuthContext from '../store/auth-context';
 
 const Cart = ({ onClose }) => {
   const cartCtx = useContext(CartContext);
@@ -18,7 +19,6 @@ const Cart = ({ onClose }) => {
       >
         Your Cart
       </h2>
-
       {cartCtx.cartItems.length === 0 ? (
         <p className="text-center fs-5  fw-bold text-danger">
           Your cart is empty.
@@ -90,7 +90,6 @@ const Cart = ({ onClose }) => {
           </Row>
         </>
       )}
-
       <div className="text-end mt-4">
         <Button variant="danger" onClick={onClose}>
           CLOSE

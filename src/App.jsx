@@ -36,7 +36,14 @@ function AppContent() {
       path: '/',
       element: <Layout cartHandler={openCartHandler} />,
       children: [
-        { path: '/home', element: <Home /> },
+        {
+          index: true,
+          element: authCtx.isLoggedIn ? (
+            <Home />
+          ) : (
+            <Navigate to="/auth" replace />
+          ),
+        },
         {
           path: '/store',
           element: authCtx.isLoggedIn ? (
