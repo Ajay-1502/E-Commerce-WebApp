@@ -1,31 +1,61 @@
 import { useParams } from 'react-router-dom';
 import musicAlbums, { merchandise } from './data/products';
-import { Card, Container } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
+import { useContext } from 'react';
+import CartContext from './cart/cart-context';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductPage = () => {
   const { productId } = useParams();
+  const cartCtx = useContext(CartContext);
 
   const allProducts = [...musicAlbums, ...merchandise];
-
   const product = allProducts.find((p) => p.id == productId);
+
+  const addToCartHandler = (product) => {
+    cartCtx.addItem(product, 1);
+    toast.success(`${product.title} is added to cart`);
+  };
 
   if (!product) {
     return <p className="text-center mt-5">Product Not Found.</p>;
   }
 
+  const generalDescription = `Dive into a world of rhythm, emotion, and melody with our exclusive collection of albums. 
+  Each album is a journey through sound, carefully crafted to elevate your mood and transport you to another dimension. 
+  Perfect for music lovers who appreciate depth, quality, and timeless creativity.`;
+
   return (
-    <Container className="my-5 d-flex justify-content-center">
-      <Card
-        className="h-100 shadow-sm text-center"
-        style={{ maxWidth: '400px' }}
-      >
-        <Card.Img variant="top" src={product.imageUrl} />
-        <Card.Body className="fw-bold">
-          <Card.Title className="product-title">{product.title}</Card.Title>
-          <Card.Text>₹{product.price}</Card.Text>
-          <Card.Text>Product ID: {product.id}</Card.Text>
-        </Card.Body>
-      </Card>
+    <Container className="my-5">
+      <Row className="align-items-center">
+        <Col md={6}>
+          <img
+            src={product.imageUrl}
+            alt={product.title}
+            className="img-fluid rounded-4 shadow"
+            style={{ height: '400px', width: '100%', objectFit: 'cover' }}
+          />
+        </Col>
+
+        <Col md={6}>
+          <h2 className="fw-bold">{product.title}</h2>
+          <h4 className="text-muted mb-3">₹{product.price}</h4>
+          <p
+            className="text-secondary"
+            style={{ fontSize: '1rem', lineHeight: '1.6' }}
+          >
+            {generalDescription}
+          </p>
+          <Button
+            variant="primary"
+            className="mt-3 px-4 py-2"
+            onClick={() => addToCartHandler(product)}
+          >
+            Add To Cart
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 };
