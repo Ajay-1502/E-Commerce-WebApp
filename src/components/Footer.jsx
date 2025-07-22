@@ -3,7 +3,7 @@ import { FaYoutube, FaSpotify, FaFacebook } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <div style={{ backgroundColor: '#87cefa', padding: '2rem 0' }}>
+    <div style={{ backgroundColor: '#eb87faff', padding: '2rem 0' }}>
       <Container className="text-center">
         <h2 className="fw-bold text-white mb-4">The Generics</h2>
       </Container>
