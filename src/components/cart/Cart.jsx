@@ -11,6 +11,13 @@ const Cart = ({ onClose }) => {
     return total + item.quantity * item.price;
   }, 0);
 
+  const purchaseHandler = () => {
+    alert('Your Order Is Placed Successfully 🎉');
+    cartCtx.cartItems.map((item) => {
+      cartCtx.removeItem(item);
+    });
+  };
+
   return (
     <Container>
       <h2
@@ -83,7 +90,7 @@ const Cart = ({ onClose }) => {
 
           <Row className="justify-content-center mt-3">
             <Col xs="auto">
-              <Button variant="success" size="md">
+              <Button variant="success" size="md" onClick={purchaseHandler}>
                 PURCHASE
               </Button>
             </Col>

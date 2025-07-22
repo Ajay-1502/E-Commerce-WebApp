@@ -15,14 +15,15 @@ const ProductPage = () => {
 
   const addToCartHandler = (product) => {
     cartCtx.addItem(product, 1);
-    toast.success(`${product.title} is added to cart`);
+    toast.success(`${product.title} is added to cart 🎉`);
   };
 
   if (!product) {
     return <p className="text-center mt-5">Product Not Found.</p>;
   }
 
-  const generalDescription = `Dive into a world of rhythm, emotion, and melody with our exclusive collection of albums. 
+  const generalDescription = `Dive into the world of shopping with our exclusive collection of merchandises & albums. 
+  Our merchandises include tshirt and coffee cup, you will get them signed by our rockband musicians.
   Each album is a journey through sound, carefully crafted to elevate your mood and transport you to another dimension. 
   Perfect for music lovers who appreciate depth, quality, and timeless creativity.`;
 
