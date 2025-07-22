@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, lazy, Suspense } from 'react';
 import {
   createBrowserRouter,
   Navigate,
@@ -12,12 +12,14 @@ import About from './components/About';
 import Home from './components/Home';
 import Layout from './components/Layout';
 import ContactUs from './components/Contact';
-import ProductPage from './components/ProductPage';
+//import ProductPage from './components/ProductPage';
 import AuthForm from './components/AuthForm';
 import AuthProvider from './components/store/AuthProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from './components/store/auth-context';
+
+const ProductPage = lazy(() => import('./components/ProductPage'));
 
 function AppContent() {
   const [showCart, setShowCart] = useState(false);
@@ -55,7 +57,9 @@ function AppContent() {
         {
           path: '/store/:productId',
           element: authCtx.isLoggedIn ? (
-            <ProductPage />
+            <Suspense fallback={<p>Loading...</p>}>
+              <ProductPage />
+            </Suspense>
           ) : (
             <Navigate to="/auth" replace />
           ),
