@@ -21,7 +21,7 @@ const Header = ({ cartHandler }) => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="py-3 shadow-sm">
       <Container>
-        <Navbar.Brand href="#" className="fs-3 fw-bold">
+        <Navbar.Brand as={Link} to="/" className="fs-3 fw-bold">
           The Generics
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />

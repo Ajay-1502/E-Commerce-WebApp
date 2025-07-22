@@ -15,7 +15,6 @@ const ContactUs = () => {
         emailId: emailId,
         phoneNumber: phoneNumber,
       };
-      console.log(userObj);
 
       try {
         const response = await fetch(
