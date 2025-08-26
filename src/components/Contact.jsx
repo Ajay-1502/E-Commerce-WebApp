@@ -18,7 +18,7 @@ const ContactUs = () => {
 
       try {
         const response = await fetch(
-          'https://react-applications-2fc42-default-rtdb.firebaseio.com//user.json',
+          'https://react-applications-2fc42-default-rtdb.firebaseio.com/user.json',
           {
             method: 'POST',
             body: JSON.stringify(userObj),

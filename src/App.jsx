@@ -12,7 +12,6 @@ import About from './components/About';
 import Home from './components/Home';
 import Layout from './components/Layout';
 import ContactUs from './components/Contact';
-//import ProductPage from './components/ProductPage';
 import AuthForm from './components/AuthForm';
 import AuthProvider from './components/store/AuthProvider';
 import { ToastContainer } from 'react-toastify';

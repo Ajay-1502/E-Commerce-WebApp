@@ -1,7 +1,8 @@
-//import cartElements from '../data/cartElements';
 import { useContext } from 'react';
 import CartContext from './cart-context';
 import { Button, Container, Table, Row, Col } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from '../store/auth-context';
 
 const Cart = ({ onClose }) => {
@@ -12,7 +13,7 @@ const Cart = ({ onClose }) => {
   }, 0);
 
   const purchaseHandler = () => {
-    alert('Your Order Is Placed Successfully 🎉');
+    toast.success('Your Order Is Placed Successfully 🎉');
     cartCtx.cartItems.map((item) => {
       cartCtx.removeItem(item);
     });
