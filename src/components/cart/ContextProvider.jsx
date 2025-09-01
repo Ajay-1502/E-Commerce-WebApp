@@ -1,8 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CartContext from './cart-context';
 
 const ContextProvider = (props) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(() => {
+    try {
+      const savedItems = localStorage.getItem('items');
+      return savedItems ? JSON.parse(savedItems) : [];
+    } catch (error) {
+      console.log('Unable to fetch the data from local storage', error);
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items));
+  }, [items]);
 
   const addItemCartHandler = (product, quantity) => {
     setItems((prevItems) => {
